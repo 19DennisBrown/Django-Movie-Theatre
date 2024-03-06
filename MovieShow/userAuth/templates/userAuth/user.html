@@ -1,0 +1,24 @@
+
+{% extends 'userAuth/base.html' %}
+
+{% block content %}
+  <body>
+
+    <div  class="block text-sm font-medium leading-6 text-gray-900">
+
+        <h1 class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">
+          User
+        </h1>
+
+      <p>
+        <a href="{% url 'login' %}">Login</a>
+      </p>
+        <p>
+          <a href="{% url 'register' %}">register</a>
+        </p>
+        <p>
+          <a href="{% url 'logout' %}">logout</a>
+        </p>
+    </div>
+  </body>
+{% endblock content %}

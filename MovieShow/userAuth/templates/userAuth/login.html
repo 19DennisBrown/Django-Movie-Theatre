@@ -1,0 +1,43 @@
+
+{% extends 'userAuth/base.html' %}
+
+{% block content %}
+  <body>
+    <h1 class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">
+      Login
+    </h1>
+    <div class="block text-sm font-medium leading-6 text-gray-900">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <label for="">
+          Username
+          <input type="text" name="username" placeholder="Enter name" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+        </label>
+        <label for="">
+          Password
+          <input type="password" name="password" placeholder="*********" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+        </label>
+
+        <input type="submit" value="submit"  class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+      </form>
+    </div>
+    <div class="relative mt-2 rounded-md shadow-sm">
+      Not yet registered?
+      <a href="{% url 'register'  %}">
+        <i>Register</i>
+      </a>
+    </div>
+    <div>
+      {% if message %}
+        <ul>
+          {% for message in messages %}
+          <li>{{message}}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <p>
+      <a href="{% url 'home' %}">home</a>
+    </p>
+  </body>
+{% endblock content %}
