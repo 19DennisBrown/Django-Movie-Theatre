@@ -12,9 +12,9 @@ from .forms import CustomForm
 # Create your views here.
 
 
-def user(request):
+# def user(request):
 
-  return render(request, 'userAuth/user.html')
+#   return render(request, 'userAuth/user.html')
 
 
 def register(request):
@@ -26,7 +26,7 @@ def register(request):
       user = userForm.save(commit=False)
       user.save()
       login(request, user)
-      return redirect('home')
+      return redirect('movies')
     else:
       messages.error(request, 'register error')
 
@@ -49,7 +49,7 @@ def loginView(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
       login(request, user)
-      return redirect('home')
+      return redirect('movies')
     else:
       messages.error(request, 'login credentials  missmatch!')
 
@@ -58,4 +58,4 @@ def loginView(request):
 
 def logoutView(request):
   logout(request)
-  return redirect('home')
+  return redirect('movies')

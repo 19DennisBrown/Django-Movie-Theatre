@@ -3,7 +3,7 @@
 {% block content  %}
 
   <h1>
-    Create movie
+    CREATE MOVIE
   </h1>
 
   <div>
@@ -12,6 +12,10 @@
       {{form}}
       <input type="submit" value="submit">
     </form>
+  </div>
+
+  <div>
+    <a href="{% url 'movies' %}">Cancel</a>
   </div>
 
 {% endblock %}

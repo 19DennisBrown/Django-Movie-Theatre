@@ -1,27 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>movie</title>
-</head>
-<body>
-  
+
+{%  extends 'movie/frame.html' %}
 {% block content %}
+
+    {% if request.user.is_authenticated  %}
     <div>
+      
+      <h1 class="px-6 py-3 text-lg font-bold bg-teal-500 text-black rounded-xl hover:bg-teal-700">
+        Available movies for You|| <b> {{user.username}}</b> 
+      </h1>
+
+      <div class="block text-sm font-medium leading-6 text-gray-900">
     
-      <h2>Movies</h2>
+        <h1 class="px-6 py-3 text-lg font-bold bg-teal-500 text-white rounded-xl hover:bg-teal-700">
+          Movies
+        </h1>
+  
+        <div>
+  
+          <ul>
+            {% for movie in movies %}
+              <a href="{% url 'movieOne' movie.id  %}">
+                <li>[{{movie.id}}] {{movie.name}}</li> 
+                <button>
+                  <a href="{% url 'edit' movie.id  %}">Edit</a>
+                  <hr>
+                  <a href="{% url 'delete' movie.id  %}">delete</a>
+                  <hr>
+                </button>
+              </a>
+            {% endfor %}
+          </ul>
+        </div>
+        <br>
+        <div>
+          <hr>
+          <p>
+            {{user.username}}! You can add Your own movie to our theatre.
+            <button style="background-color: orange;">
+              <a href="{% url 'new' %}">Try Out</a>
+            </button>
+          </p>
+          <hr>
+          <a href="{% url 'logout' %}">logout</a>
+          
+        </div>
+      </div>
+      {% else %}
+    <div class="block text-sm font-medium leading-6 text-gray-900">
+    
+      <h1 class="px-6 py-3 text-lg font-bold bg-teal-500 text-white rounded-xl hover:bg-teal-700">
+        Movies
+      </h1>
 
       <div>
+        
         <ul>
           {% for movie in movies %}
-            <a href="">
-              <li>{{movie.name}}</li>
-            </a>
+          <a href="">
+            <li>[{{movie.id}}] {{movie.name}}</li> 
+          </a>
           {% endfor %}
         </ul>
       </div>
+      <a href="{% url 'login' %}">login</a>
+      {% endif %}
+
     </div>
   {% endblock content %}
-</body>
-</html>

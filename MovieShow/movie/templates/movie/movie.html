@@ -4,4 +4,31 @@
 
 {% block content %}
 
+<div>
+  <h1>
+    This is movie is called || <b>{{movie.name}}</b> 
+  </h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Day</th>
+        <th>Price</th>
+        <th>Hosted by</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <th>{{movie.id}}</th>
+        <td>{{movie.created_at|timesince}}</td>
+        <td>{{movie.price}}</td>
+        <td>{{movie.created_by}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="{% url 'movies' %}">Go back</a>
+
+</div>
 {% endblock content %}
