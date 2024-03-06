@@ -36,7 +36,7 @@ def register(request):
 
 def loginView(request):
   if request.user.is_authenticated:
-    return redirect('user')
+    return redirect('movies')
 
   if request.method == 'POST':
     username = request.POST.get('username')

@@ -11,13 +11,15 @@ class MovieDetails(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f'{self.name}, {self.price}'
+        return self.name
     
 
 
 
 class bookedMovie(models.Model):
     movieStats = models.ForeignKey(MovieDetails, on_delete = models.CASCADE, null=True)
-    def __str__(self):
-      return self.movieStats
+    booking = models.BooleanField(default=False, null=True)
+    
+    # def __str__(self):
+    #   return self.booking
     

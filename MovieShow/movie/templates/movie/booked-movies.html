@@ -1,0 +1,25 @@
+
+
+{% include 'movie/frame.html'  %}
+
+{% block content %}
+
+<div>
+  <h1>
+    Booked Movie sits 
+  </h1>
+  <div>
+    <ul>
+      {% for movie in movieBooked %}
+        <li>
+          {{movie.bookedMovie.name}}
+        </li>
+      {% empty %}
+        <i>....No tickects Available</i>
+      {% endfor %}
+    </ul>
+  </div>
+  <a href="{% url 'movies' %}">Go back</a>
+
+</div>
+{% endblock content %}

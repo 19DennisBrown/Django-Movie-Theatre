@@ -3,7 +3,7 @@
 {% block content %}
 
     {% if request.user.is_authenticated  %}
-    <div>
+    <div class="container">
       
       <h1 class="px-6 py-3 text-lg font-bold bg-teal-500 text-black rounded-xl hover:bg-teal-700">
         Available movies for You|| <b> {{user.username}}</b> 
@@ -19,15 +19,31 @@
   
           <ul>
             {% for movie in movies %}
-              <a href="{% url 'movieOne' movie.id  %}">
-                <li>[{{movie.id}}] {{movie.name}}</li> 
-                <button>
-                  <a href="{% url 'edit' movie.id  %}">Edit</a>
+            <br><br>
+            <li>
+               <a href="{% url 'movieOne' movie.id  %}">
+                  [{{movie.id}}] <b class="text-gray-900">  {{movie.name}}</b>
+                </a>
+                <br>
+                  <button class="bg-teal-500">
+                    <a href="{% url 'edit' movie.id  %}">Edit</a>
+                  </button>
                   <hr>
-                  <a href="{% url 'delete' movie.id  %}">delete</a>
-                  <hr>
-                </button>
-              </a>
+                  
+                  <button class="text-orange">
+                    <a href="{% url 'delete' movie.id  %}">delete</a>
+                    <hr>
+                  </button>
+
+                  <form action="" method="POST">
+                    {% csrf_token %}
+                    <label for="">
+                      Book a seat for this movie?
+                      <input type="checkbox" name="isBooked" id="box">
+                    </label>
+                    <input type="submit" value="confirm">
+                  </form>
+              </li> 
             {% endfor %}
           </ul>
         </div>
@@ -40,6 +56,8 @@
               <a href="{% url 'new' %}">Try Out</a>
             </button>
           </p>
+          <a href="{% url 'book' %}">Check Booked Movie list!</a>
+          <br>
           <hr>
           <a href="{% url 'logout' %}">logout</a>
           

@@ -12,9 +12,28 @@ def movies(request):
     }
   return render(request, 'movie/movies.html', context)
 
+
+
+def bookMovie(request):
+    movie = bookedMovie.objects.filter(booking=True)
+    context = {
+        'movieBooked': movie
+    }
+    return render(request,'movie/booked-movies.html' )
+
+
 def movieOne(request, id):
   movie = MovieDetails.objects.get(id=id)
+  if request.method == 'POST':
+      user = request.user,
+      description = MovieDetails.description,
+      price = MovieDetails.price,
+      created_at = MovieDetails.created_at,
+      booking = request.POST.get('isBooked')
+      if booking.is_valid():
+        booking.save()
 
+        return redirect('movies')
   context = {
     'movie':movie
   }
@@ -23,7 +42,6 @@ def movieOne(request, id):
 
 @login_required(login_url= '/login/')
 def newMovie(request):
-    # if User == request.user:
       form = NewMovieForm()
       if request.method == 'POST':
           form = NewMovieForm(request.POST)
