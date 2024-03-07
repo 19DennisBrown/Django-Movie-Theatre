@@ -19,9 +19,10 @@ def bookMovie(request):
     context = {
         'movieBooked': movie
     }
-    return render(request,'movie/booked-movies.html' )
+    return render(request,'movie/booked-movies.html', context )
 
 
+@login_required
 def movieOne(request, id):
   movie = MovieDetails.objects.get(id=id)
   if request.method == 'POST':

@@ -1,11 +1,4 @@
 
-
 body{
-  background-color: rgb(192, 189, 189);
-  padding: 20px; margin:20px;
-
-}
-
-li{
-  text-decoration: underline;
+  list-style: none;
 }
