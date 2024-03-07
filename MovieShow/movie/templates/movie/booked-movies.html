@@ -8,18 +8,36 @@
   <h1>
     Booked Movie sits 
   </h1>
-  <div>
-    <ul>
-      {% for movie in movieBooked %}
-        <li>
-          {{movie.bookedMovie.name}}
-        </li>
-      {% empty %}
-        <i>....No tickects Available</i>
-      {% endfor %}
-    </ul>
-  </div>
+ 
+
+  <ul>
+    {% for movie in movie %}
+    <li>
+
+      <button type="button" class="btn btn-primary position-relative bg-success ">
+        {{movie}}
+        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+          <span class="visually-hidden">
+             
+            <a href="" style=" text-decoration: none;">
+               <b class="text-gray-900"> {{movie}}</b>
+            </a>
+            
+          </span>
+        </span>
+      </button>
+      </li>
+    {% endfor %}
+    
+  </ul>
+
+
+<br><br>
+
+<button type="button" class="btn btn-outline-warning">
   <a href="{% url 'movies' %}">Go back</a>
+  
+</button>
 
 </div>
 {% endblock content %}

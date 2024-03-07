@@ -3,9 +3,9 @@
 {% block content %}
 
     {% if request.user.is_authenticated  %}
-    <div class="container-fluid text-center" style="height: 100vh; width: 100vw;">
+    <div class="container text-center" style="height: 100vh; width: 100%;">
       
-      <h1 class="px-6 py-3 text-lg font-bold bg-teal-500 text-black rounded-xl hover:bg-teal-700">
+      <h1 class="bg-success" style="margin: 30px; padding: 30px;">
         Available movies for You|| <b> {{user.username}}</b> 
       </h1>
 
@@ -16,34 +16,58 @@
         </h1>
   
         <div>
+
+          
   
           <ul>
             {% for movie in movies %}
-            <br><br>
-            <li>
-               <a href="{% url 'movieOne' movie.id  %}">
-                  [{{movie.id}}] <b class="text-gray-900">  {{movie.name}}</b>
-                </a>
-                <br>
-                  <button class="bg-teal-500">
-                    <a href="{% url 'edit' movie.id  %}">Edit</a>
-                  </button>
-                  <hr>
-                  
-                  <button class="text-orange">
-                    <a href="{% url 'delete' movie.id  %}">delete</a>
-                    <hr>
-                  </button>
+            <div class="col mx-auto p-2" style="width: 50vw; text-decoration: none;">
 
-                  <form action="" method="POST">
-                    {% csrf_token %}
-                    <label for="">
-                      Book a seat for this movie?
-                      <input type="checkbox" name="isBooked" id="box">
-                    </label>
-                    <input type="submit" value="confirm">
-                  </form>
-              </li> 
+              <div class="card text-center">
+                <div class="card-header">
+                  Featured
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a href="{% url 'movieOne' movie.id  %}" style=" text-decoration: none;">
+                     {{movie.id}}||_ <b class="text-gray-900">  {{movie.name}}</b>
+                    </a
+                  </h5>
+                  <p class="card-text outline-warning" style="padding:30px ; text-decoration: none; ">
+                    Description : 
+                    <br>
+                    {{movie.description}}
+                  </p>
+                  
+
+                  <div class="row gap-3"  style=" padding: 20px; margin: 10px;">
+                    <button type="button" class="btn btn-outline-success">
+                      <a href="{% url 'edit' movie.id  %}">Edit</a>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger">
+                      <a href="{% url 'delete' movie.id  %}">delete</a>
+                    </button>
+
+                    <button type="button" class="btn btn-outline-warning">
+                      <form action="" method="POST">
+                        {% csrf_token %}
+                        <label for="">
+                          Book a seat for this movie?
+                          <input type="checkbox" name="isBooked" id="box">
+                        </label>
+                        <input type="submit" value="confirm">
+                       </form>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-footer text-body-secondary">
+                  {{movie.created_at|timesince}} ago
+                </div>
+              </div>
+
+            </div>
+
             {% endfor %}
           </ul>
         </div>
@@ -52,14 +76,18 @@
           <hr>
           <p>
             {{user.username}}! You can add Your own movie to our theatre.
-            <button style="background-color: orange;">
+            <button class="btn btn-outline-primary">
               <a href="{% url 'new' %}">Try Out</a>
             </button>
           </p>
-          <a href="{% url 'book' %}">Check Booked Movie list!</a>
+          <button type="button" class="btn btn-outline-success m-3">
+            <a href="{% url 'book' %}">Check Booked Movie list!</a>            
+          </button>
           <br>
           <hr>
-          <a href="{% url 'logout' %}">logout</a>
+          <button type="button" class="btn btn-outline-danger m-3">
+            <a href="{% url 'logout' %}">logout</a>            
+          </button>
           
         </div>
       </div>
@@ -70,11 +98,11 @@
       <div class="container shadow-lg p-3 mb-5 bg-body-tertiary rounded" >
         <div class="row align-items-center h-39">
           <div class="col text-center bg-success">
-            <h1 style="height: 120px; padding: 30px;">
+            <h1 style="height: 120px; padding: 30px;"  class="fw-bold fs-1">
               Movies
             </h1>
 
-            <p class="p-3">
+            <p class="p-3 pb-4 fs-4" style="font-style: italic;">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo rerum culpa nobis aliquid odit. Ab deserunt, tempora similique nesciunt doloribus quo quos vero mollitia iure minima sit ratione, cupiditate fuga.
             </p>
           </div>
@@ -84,18 +112,18 @@
         <div class="row gap-3  align-items-center">
           {% for movie in movies %}
           <div class="col mx-auto p-2" style="width: 200px;">
-
-
             <div class="card" style="width: 18rem;">
               <img src="..." class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">{{movie.id}} || {{movie.name}}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">{{movie.id}} ||<b class="fs-2"> {{movie.name}}</b> </h5>
+                <p class="card-text p-3">
+                  {{movie.description}}
+                </p>
                 <a href="{% url 'movieOne' movie.id %}" class="btn btn-primary">View</a>
               </div>
             </div>
-            </div>
-              {% endfor %}
+          </div>
+            {% endfor %}
         </div>
       </div>
       <div class="text-center" >

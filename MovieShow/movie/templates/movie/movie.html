@@ -4,12 +4,16 @@
 
 {% block content %}
 
-<div>
-  <h1>
-    This is movie is called || <b>{{movie.name}}</b> 
+<div class="container pt-5">
+  <h1 class="font-monospace text-center">
+    This is movie is called || 
+    <p class="text-uppercase">
+      <b>{{movie.name}}</b>
+    </p
+     
   </h1>
 
-  <table>
+  <table class="table table-striped-columns m-4">
     <thead>
       <tr>
         <th>ID</th>
@@ -28,7 +32,12 @@
       </tr>
     </tbody>
   </table>
+
+  
+<button type="button" class="btn btn-outline-warning">
   <a href="{% url 'movies' %}">Go back</a>
+  
+</button>
 
 </div>
 {% endblock content %}

@@ -6,7 +6,14 @@ from  django.contrib.auth.decorators  import  login_required
 
 def movies(request):
   movies = MovieDetails.objects.all().values()
-
+  if request.method == 'POST':
+      user = request.user,
+      description = MovieDetails.description,
+      price = MovieDetails.price,
+      created_at = MovieDetails.created_at,
+      booking = request.POST.get('isBooked')
+      
+      return redirect('book')
   context = {
     'movies':movies
     }
@@ -16,25 +23,17 @@ def movies(request):
 
 def bookMovie(request):
     movie = bookedMovie.objects.filter(booking=True)
+
     context = {
-        'movieBooked': movie
+        'movie': movie,
     }
     return render(request,'movie/booked-movies.html', context )
 
 
-@login_required
+# @login_required(login_url='/userAuth/login/')
 def movieOne(request, id):
   movie = MovieDetails.objects.get(id=id)
-  if request.method == 'POST':
-      user = request.user,
-      description = MovieDetails.description,
-      price = MovieDetails.price,
-      created_at = MovieDetails.created_at,
-      booking = request.POST.get('isBooked')
-      if booking.is_valid():
-        booking.save()
-
-        return redirect('movies')
+ 
   context = {
     'movie':movie
   }
