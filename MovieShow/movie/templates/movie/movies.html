@@ -39,7 +39,9 @@
                     <br>
                     {{movie.description}}
                   </p>
-                  
+                  <div class="container p-3 m-4">
+                    <img src="{{ movie.thumbnail.url }}" alt="Image">
+                  </div>
 
                   <div class="row gap-3"  style=" padding: 20px; margin: 10px;">
                     <button type="button" class="btn btn-outline-success">
@@ -120,6 +122,9 @@
                   {{movie.description}}
                 </p>
                 <a href="{% url 'movieOne' movie.id %}" class="btn btn-primary">View</a>
+              </div>
+              <div class="container p-3 m-4">
+                <img src="{{ movie.thumbnail.url }}" alt="Image">
               </div>
             </div>
           </div>

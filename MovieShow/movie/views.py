@@ -44,7 +44,7 @@ def movieOne(request, id):
 def newMovie(request):
       form = NewMovieForm()
       if request.method == 'POST':
-          form = NewMovieForm(request.POST)
+          form = NewMovieForm(request.POST, request.FILES)
 
           if form.is_valid():
               form.save()

@@ -7,7 +7,7 @@ INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
 class NewMovieForm(forms.ModelForm):
     class Meta:
         model = MovieDetails
-        fields = ('name', 'description', 'price', 'created_by')
+        fields = ('name', 'description', 'price', 'created_by', 'thumbnail')
         widgets = {
             
             'name': forms.TextInput(attrs={
@@ -20,14 +20,13 @@ class NewMovieForm(forms.ModelForm):
                 'class': INPUT_CLASSES
             }),
          
-           
         }
 
 
 class EditMovieForm(forms.ModelForm):
     class Meta:
         model = MovieDetails
-        fields = ('name', 'description', 'price',)
+        fields = ('name', 'description', 'price', 'thumbnail')
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': INPUT_CLASSES

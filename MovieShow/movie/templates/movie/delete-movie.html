@@ -10,12 +10,16 @@
     <form action="" method="POST">
       {% csrf_token  %}
        {{movieOne}}
-      <input type="submit" value="delete">
+       <!-- <button class="btn btn-primary" type="submit">
+
+       </button> -->
+      <input class="btn btn-primary" type="submit" value="delete">
     </form>
   </div>
 
   <div>
-    <a href="{{request.META.HTTP_REFERER}}">Cancel</a>
+    <button type="button" class="btn btn-outline-info">
+      <a href="{{request.META.HTTP_REFERER}}">Cancel</a>      
+    </button>
   </div>
-
 {% endblock %}

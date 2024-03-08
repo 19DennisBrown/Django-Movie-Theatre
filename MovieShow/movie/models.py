@@ -9,7 +9,7 @@ class MovieDetails(models.Model):
     price = models.FloatField()
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    thumbnail = models.ImageField(upload_to = 'images/', blank=True, null=True)
     def __str__(self):
         return self.name
     
